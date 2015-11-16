@@ -1,14 +1,15 @@
 package se.plushogskolan.ju15.javafx;
 
-import se.plushogskolan.ju15.model.*;
-
-import java.awt.Button;
-import java.awt.TextField;
-import java.awt.event.ActionListener;
+import se.plushogskolan.ju15.model.EmployeeModel;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
@@ -23,16 +24,39 @@ public class TestDemo extends Application{
 		public void start (Stage mystage){ 
 			
 			EmployeeBean employeebean = new EmployeeBean();
-
-TextField input = new TextField();
+			EmployeeModel employeeModel = new EmployeeModel();
+			TextField input = new TextField();
+			input.setPromptText("Ange månadslön");
+			Label lbl = new Label();
 
 Button btnYear = new Button ("get yearly salary");
+btnYear.setOnAction(new EventHandler<ActionEvent>(){
 
-			
+	@Override
+	public void handle(ActionEvent event) {
+		// TODO Auto-generated method stub
+		employeebean.setMonthlySalary(new Integer(input.getText()).intValue());
+		lbl.setText("Årslön: "+employeeModel.calculateYearlySalary(employeebean));
+	}
+});
+	
+Button btnAppresial = new Button("Appresial");
+btnAppresial.setOnAction(new EventHandler<ActionEvent>() {
+
+	@Override
+	public void handle(ActionEvent event) {
+		lbl.setText("Bonus: "+employeeModel.calculateAppraisal(employeebean));
+		
+	}
+	
+});
+
+
 			
 
 // Design
 			FlowPane root = new FlowPane();
+			root.getChildren().addAll(btnYear,btnAppresial,input,lbl);
 			Scene myscene = new Scene(root,400,400);
 			mystage.setScene(myscene);
 			mystage.show();
@@ -42,5 +66,5 @@ Button btnYear = new Button ("get yearly salary");
 		
 		
 		
-	} // TestDemo klammer
+	} // TestDemo slutklammer
 
