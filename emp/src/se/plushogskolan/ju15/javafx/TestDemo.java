@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import se.plushogskolan.ju15.beans.*;
 
@@ -51,20 +52,29 @@ btnAppresial.setOnAction(new EventHandler<ActionEvent>() {
 	
 });
 
+Button btnNetSalary = new Button ("NetSalary");
+btnNetSalary.setOnAction(new EventHandler<ActionEvent>() {
 
-			
+	@Override
+	public void handle(ActionEvent event) {
+		lbl.setText("Net Salary: "+employeeModel.calculateNetSalary(employeebean));
+		
+	}
+	
+});
+		
 
 // Design
 			FlowPane root = new FlowPane();
-			root.getChildren().addAll(btnYear,btnAppresial,input,lbl);
+			HBox knappar = new HBox();
+			knappar.getChildren().addAll(btnYear,btnAppresial,btnNetSalary);
+			root.getChildren().addAll(knappar,input,lbl);
 			Scene myscene = new Scene(root,400,400);
 			mystage.setScene(myscene);
 			mystage.show();
 			
 		}
 	
-		
-		
-		
+	
 	} // TestDemo slutklammer
 

@@ -24,4 +24,31 @@ public class EmployeeModel {
 	      }
 	      return appraisal;
 	   }
+	   
+	   public int calculateNetSalary(EmployeeBean employeeBean){
+		   
+		   double netSalary;
+		   double minTax;
+		   double mediumTax;
+		   double maxTax;
+		   
+		   
+		   double yearSalary=calculateYearlySalary(employeeBean);
+		   if (yearSalary<=37000 ){
+			   minTax= yearSalary*0.7;
+			netSalary= minTax;   
+		   }
+		   else if (yearSalary>37000 & yearSalary <=52000){
+			   minTax= 37000*0.7;
+			   mediumTax=(yearSalary-37000)*0.5;
+			   netSalary=minTax+mediumTax;
+		   }
+		   else{
+			   minTax= 37000*0.7;
+			   mediumTax=15000*0.5;
+			   maxTax= (yearSalary-52000)*0.45;
+			   netSalary=minTax+mediumTax+maxTax;
+		   }
+		   return (int)netSalary;
+	   }
 	}
