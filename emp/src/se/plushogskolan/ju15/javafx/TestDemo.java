@@ -1,7 +1,6 @@
 package se.plushogskolan.ju15.javafx;
 
 import se.plushogskolan.ju15.model.EmployeeModel;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,12 +14,35 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import se.plushogskolan.ju15.beans.*;
+import java.util.logging.*;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 
 public class TestDemo extends Application{
-
-	public static void main(String[] args) {
-		launch(args);
+private static java.util.logging.Logger logger  = java.util.logging.Logger.getLogger("se.plushogskolan.ju15.javafx.TestDemo");
 	
+private static final Logger logger4j=LogManager.getLogger("se.plushogskolan.ju15.javafx.TestDemo");
+
+	
+ 	public static void main(String[] args) {
+		
+	/*
+		logger.log(Level.FINEST,"Launching javafx");
+	logger.finer("Finer. launch javafx");
+	logger.fine("fine");
+	logger.config("config");
+	logger.info("info");
+	logger.warning("warning");
+	logger.severe("severe");
+	*/
+	logger4j.trace("main trace");
+	logger4j.debug("main debug");
+	logger4j.info("main info");
+	logger4j.warn("main warn");
+	logger4j.error("main error");
+	logger4j.fatal("main fatal");
+	launch(args);
 	}
 		public void start (Stage mystage){ 
 			
@@ -32,12 +54,12 @@ public class TestDemo extends Application{
 
 Button btnYear = new Button ("get yearly salary");
 btnYear.setOnAction(new EventHandler<ActionEvent>(){
-
 	@Override
 	public void handle(ActionEvent event) {
 		// TODO Auto-generated method stub
 		employeebean.setMonthlySalary(new Integer(input.getText()).intValue());
 		lbl.setText("Årslön: "+employeeModel.calculateYearlySalary(employeebean));
+		logger4j.warn("Här körs calculate year salary");
 	}
 });
 	

@@ -1,7 +1,11 @@
 package se.plushogskolan.ju15.model;
 
 import se.plushogskolan.ju15.beans.EmployeeBean;
-
+/**
+ * 
+ * @author David
+ *
+ */
 public class EmployeeModel {
 	   // Calculate the yearly salary of employee
 	   public int calculateYearlySalary(EmployeeBean employeeBean){
@@ -9,6 +13,12 @@ public class EmployeeModel {
 	      yearlySalary = employeeBean.getMonthlySalary() * 12;
 	      return yearlySalary;
 	   }
+	   /**
+	    * 
+	    * @param employeeBean
+	    * @return
+	    * 
+	    */
 		
 	   // Calculate the appraisal amount of employee
 	   public int calculateAppraisal(EmployeeBean employeeBean){
